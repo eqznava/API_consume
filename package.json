@@ -1,19 +1,20 @@
 {
-  "name": "final_fantasy",
-  "version": "1.0.0",
-  "description": "Its a practice to use a API from final fantasy and show characters in a card",
-  "main": "scripts/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "callbacks",
-    "api",
-    "async"
-  ],
-  "author": "Sergio Arturo Enriquez Nava",
-  "license": "MIT",
-  "dependencies": {
-    "xmlhttprequest": "^1.8.0"
-  }
+    "name": "final_fantasy",
+    "version": "1.0.0",
+    "description": "Its a practice to use a API from final fantasy and show characters in a card",
+    "main": "scripts/index.js",
+    "scripts": {
+        "start": "node scripts/index.js",
+        "testRandom": "node utils/randomNum.js"
+    },
+    "keywords": [
+        "callbacks",
+        "api",
+        "async"
+    ],
+    "author": "Sergio Arturo Enriquez Nava",
+    "license": "MIT",
+    "dependencies": {
+        "xmlhttprequest": "^1.8.0"
+    }
 }

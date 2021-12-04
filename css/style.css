@@ -3,37 +3,63 @@ body {
     background-color: #222;
 }
 
+.main {
+    border: 1px solid white;
+    width: 100%;
+    border-radius: 15px;
+}
+
 .container {
-    width: 70%;
-    display: flex;
+    width: 100%;
+    display: -webkit-inline-box;
+    overflow-x: scroll;
     justify-content: center;
     text-align: center;
 }
 
+.container::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #222;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
 article {
-    width: 40%;
+    width: 230px;
+    height: 250px;
     border: 2px solid black;
     box-shadow: 0px 0px 15px #65EBE6;
     border-radius: 15px;
-    padding: 25px;
+    padding: 15px;
+    margin: 20px;
     background-color: #6dac85;
     color: honeydew;
 }
 
 article>h1 {
     font-size: 1em;
+    margin-top: 0px;
+    margin-bottom: 3px;
 }
 
 article>h2 {
     font-size: 0.9em;
+    margin-top: 0px;
 }
 
 article>p {
-    width: 60%;
+    width: 100%;
     margin: 0px auto;
+    margin-top: 20px;
+    font-size: 0.85em;
 }
 
 article>img {
+    width: 115px;
     box-shadow: 0px 0px 20px silver inset;
     border-radius: 20px;
 }

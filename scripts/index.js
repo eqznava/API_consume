@@ -1,36 +1,18 @@
 import { callbackFetchData } from "./callbackFetchData.js";
+import { buildCard } from "./buildCard.js";
+import { fetchData } from "./fetchData.js";
 // const API = 'https://ffxivcollect.com/api/minions/';
 // const API = 'https://ffxivcollect.com/api/minions?name_en_start=Nagxian Cat';
-const API = 'https://ffxivcollect.com/api/minions?limit=30';
 // const API = 'https://ffxivcollect.com/api/minions?id_in=9,25,31,17,14,23';
+const API = 'https://ffxivcollect.com/api/minions?limit=30';
+const API_PROMISE = 'https://ffxivcollect.com/api/minions?id_in=31...60';
+const API_ASYNC = 'https://ffxivcollect.com/api/minions?id_in=61...90';
 
-function buildCard(minions) {
-    const card = document.createElement('article');
-    card.innerHTML = `<h1>${minions.name}</h1>
-                            <h2>${minions.race.name}</h2>
-                            <img src="${minions.image}" alt="${minions.name}">
-                            <p>${minions.tooltip}</p>`;
-    return card;
-}
+const callbackContainer = document.getElementById('card-container1');
+const promiseContainer = document.getElementById('card-container2');
+const asyncContainer = document.getElementById('card-container3');
 
-// function callbackFetchData(url_api, callback) {
-//     const xhttp = new XMLHttpRequest();
-//     xhttp.open('GET', url_api, true);
-//     xhttp.onreadystatechange = function(event) {
-//         if (xhttp.readyState === 4) {
-//             if (xhttp.status === 200) {
-//                 callback(null, JSON.parse(xhttp.responseText))
-//             } else {
-//                 const error = new Error('Error: ' + url_api);
-//                 return callback(error, null)
-//             }
-//         }
-//     }
-//     xhttp.send();
-// }
-
-const callbackContainer = document.getElementById('card-container');
-
+//Callback
 callbackFetchData(API, function(error1, data1) {
     if (error1) return console.error(error1);
     data1.results.map(minions => {
@@ -38,3 +20,25 @@ callbackFetchData(API, function(error1, data1) {
         callbackContainer.appendChild(card);
     });
 });
+
+// Promises
+fetchData(API_PROMISE)
+    .then(data1 => {
+        data1.results.map(minions => {
+            const card = buildCard(minions);
+            promiseContainer.appendChild(card);
+        });
+    })
+    .catch(error => {
+        return error;
+    });
+
+// Async / Await
+(async function fetchDataAsync() {
+    const data1 = await fetchData(API_ASYNC);
+
+    data1.results.map(minions => {
+        const card = buildCard(minions);
+        asyncContainer.appendChild(card);
+    });
+})();
